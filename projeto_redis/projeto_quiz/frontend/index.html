@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema Gamificado de Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .quiz-container { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; }
+    .question { margin-bottom: 15px; }
+    button { padding: 8px 12px; }
+  </style>
+</head>
+<body>
+  <h1>Quiz Gameficado</h1>
+  <div id="quiz"></div>
+
+  <script>
+    // Exemplo simples: consulta os resultados de um quiz pelo ID
+    async function getQuizResults(quizId) {
+      try {
+        const response = await fetch(`http://localhost:8000/quiz/${quizId}/results`);
+        if (!response.ok) {
+          throw new Error("Quiz não encontrado ou erro na API");
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
+    }
+
+    async function renderQuizResults() {
+      const quizId = prompt("Digite o ID do Quiz para consultar os resultados:");
+      const data = await getQuizResults(quizId);
+      const quizDiv = document.getElementById("quiz");
+      if (data) {
+        quizDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } else {
+        quizDiv.innerHTML = "<p>Erro ao carregar os resultados.</p>";
+      }
+    }
+
+    renderQuizResults();
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+[project]
+name = "projeto_redis"
+version = "0.1.0"
+description = "Projeto de Quiz com FastAPI e Redis"
+authors = [
+    {name = "Lucas Freitas",email = "kalulis@outlook.com"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "uvicorn (>=0.34.0,<0.35.0)",
+    "redis[asyncio] (>=5.2.1,<6.0.0)",
+    "pydantic (>=2.10.6,<3.0.0)",
+    "fastapi (>=0.115.8,<0.116.0)",
+    "typing-extensions (>=4.12.2,<5.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
